@@ -1,37 +1,3 @@
-heights <- data.frame(
-  height_cm = c(153, 181, 150, 172, 165, 149, 174, 169, 198, 163),
-  gender = c(
-    "female", "male", "female", "male", "male",
-    "female", "female", "male", "male", "female"
-  )
-)
-str(heights$gender)
-levels(heights$gender)
-
-substr(rep("abcdef", 4), 1:4, 4:5)
-x <- c("asfef", "qwerty", "yuiop[", "b", "stuff.blah.yech")
-substr(x, 1, 6)
-substr(x, 1:5, 6)
-
-substring(x, 2, 4:6)
-
-substring(x, 2) <- c("..", "+++")
-x
-# }
-
-
-
-woodchuck <- c(
-  "How much wood would a woodchuck chuck",
-  "If a woodchuck could chuck wood?",
-  "He would chuck, he would, as much as he could",
-  "And chuck as much wood as a woodchuck would",
-  "If a woodchuck could chuck wood."
-)
-getwd()
-length(woodchuck)
-substring(woodchuck, 1:10, 1)
-?substring
 rm(list = ls())
 p <- ggplot(mtcars, aes(mpg, wt)) +
   geom_point()
