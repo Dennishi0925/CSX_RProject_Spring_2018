@@ -20,5 +20,12 @@
 
 ### week2
 > * finished **Chapter3** & **Chapter4** of R for Data Science
+> * recommended two sites for R4DS' excercises: [Nate Day](https://www.nateday.me/r4ds_exercises.html) and [cimentadaj's github](https://github.com/cimentadaj/R4DS-Solutions/)
 > * finished **HW2** aiming to list courses on Datacamp
 > * learned [**kableExtra**](https://www.rdocumentation.org/packages/kableExtra/versions/0.7.0) packge
+
+
+### week3
+> * expected to finish **Chapter5** & **Chapter6** of R for Data Science
+> * expected to finish  **HW3** aiming to practice data visualization
+> * 
