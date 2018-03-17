@@ -27,5 +27,5 @@
 
 ### week3
 > * expected to finish **Chapter5** & **Chapter6** of R for Data Science
-> * expected to finish  **HW3** aiming to practice data visualization
+> * finished **HW2** aiming to practice data visualization
 > * 
