@@ -1,0 +1,96 @@
+---
+title: "HW3"
+author: "Dennis Tseng"
+date: "2018/3/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### This is the 7.5.1.1 exercise from chapter 7 **Exploratory Data Analysis** in [The art of R programming](http://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf).
+
+#### The question is "Use what you¡¦ve learned to improve the visualisation of the departure times of cancelled vs. non-cancelled flights."
+
+```{r , message = FALSE, results = FALSE}
+library(tidyverse)
+library(nycflights13)
+data(flights)
+str(flights)
+
+# arr_time = NA means that the flight was cancelled
+# add cancelled column to identify
+flights_cancellation <- flights %>%
+  mutate(cancelled = is.na(arr_time))
+```
+
+#### Now I am going to plot the result. There are several options I can choose to plot.
+#### Before plotting, we have to know the type of variables, which are "cancelled" and "dep_time" in this case.
+
+```{r , message = FALSE, warning = FALSE}
+head(flights_cancellation$cancelled)
+head(flights_cancellation$dep_time)
+```
+
+#### Now we know that "cancelled" is a categorical variable and "dep_time" is a continuous variable.
+#### Les's plot!
+
+```{r , message = FALSE, warning = FALSE}
+# plot01
+# draw the plot00
+flights_cancellation %>%
+  ggplot(aes(x = cancelled)) +
+  geom_bar()
+```
+
+#### It is quite clear that there is counts gap within flights.
+
+```{r , message = FALSE, warning = FALSE}
+# plot01
+flights_cancellation %>%
+  ggplot(aes(x = dep_time)) +
+  geom_freqpoly(aes(col = cancelled), binwidth = 50)
+```
+
+#### As you can see, since the counts of cancelled flights are largely less than not-cancelled flights, we can't observe the trend of cancelled flights. Thus, we should change from  ```geom_freqpoly()``` to ```geom_density()```.
+
+```{r , message = FALSE, warning = FALSE}
+# plot02
+flights_cancellation %>%
+  ggplot(aes(x = dep_time)) +
+  geom_density(aes(col = cancelled), bw = 40) 
+```
+
+#### As you can see, there are some pattern between cancelled and not-cancelled flights.
+
+```{r , message = FALSE, warning = FALSE}
+# dplot03
+flights_cancellation %>%
+  ggplot(aes(x = dep_time)) +
+  geom_freqpoly(binwidth = 50) +
+  facet_grid( . ~ cancelled)
+```
+
+#### Let's add ```facet_grid()``` to the plot, but we need to remember to adjust the geom function.
+
+```{r , message = FALSE, warning = FALSE}
+# plot04
+flights_cancellation %>%
+  ggplot(aes(x = dep_time)) +
+  geom_density(bw = 40) +
+  facet_grid( . ~ cancelled)
+```
+
+#### As you can see, ```facet_grid()``` looks great.
+
+```{r , message = FALSE, warning = FALSE}
+# plot05
+flights_cancellation %>%
+  ggplot(aes(x = cancelled, y = dep_time)) +
+  geom_boxplot() 
+```
+
+#### As you can see, ```geom_boxplot()``` is also great.
+
+#### To sum up, we use ```geom_freqpoly```, ```geom_density``` and ```geom_boxplot()``` to plot two variables which are "cancelled" and "dep_time". Since there are counts gap, we have to use density to replace counts. Boxplot is also useful to compare continuous variable broken down by a categorical variable.
