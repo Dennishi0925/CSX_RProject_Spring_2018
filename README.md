@@ -27,5 +27,7 @@
 
 ### week3
 > * expected to finish **Chapter5** & **Chapter6** of R for Data Science
-> * finished **HW2** aiming to practice data visualization
-> * 
+> * finished **Chapter3** of [Data Points](http://r4ds.had.co.nz)
+> * finished **HW3** aiming to practice data visualization
+> * finished **ML1** courses on Datacamp
+> * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, which provide a complete gide to to become a data journalist
