@@ -10,16 +10,6 @@
 > * finished first 7 chapters of [The art of R programming](http://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)
 > * finished [Hands-On Programming with R](http://shop.oreilly.com/product/0636920028574.do)
 
-### To-read books list roadmap for myself: 
-> * R programming Basic: learn R(first half), Hands on programming with R(Whole book), courses on Datacamp(Introduction and Intermediae)
-> * R programming Intermediate: The art of R programming(first half)
-> * R programming Advanced: Advanced R, The art of R programming(first half)
-> * Data tidying: R for data science, learn R(second half) 
-> * Data Visualization: courses on Datacamp(ggplot - lattice - ggvis), **R graphics cookbook**, **Visualize this**
-> * Data Journalism: data journalism handbook, 
-> * Statistics: OpenIntro
-> * Machine learning: machine learning with R, 
-(**bold** means I should read them recently)
 
 ### week1
 > * finished **Chapter1** & **Chapter2** of [R for Data Science](http://r4ds.had.co.nz)
