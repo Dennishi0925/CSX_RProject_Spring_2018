@@ -28,6 +28,7 @@
 ### week3
 > * expected to finish **Chapter5** & **Chapter6** of R for Data Science
 > * finished **Chapter3** of [Data Points](http://r4ds.had.co.nz)
+> * finished **ggplot2 chapter** of [R in action 2nd](http://kek.ksu.ru/eos/DataMining/1379968983.pdf)
 > * finished **HW3** aiming to practice data visualization
-> * finished **ML1** courses on Datacamp
-> * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, which provide a complete gide to to become a data journalist
+> * finished first theree chapters of **ML1** courses on Datacamp
+> * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to to become a data journalist
