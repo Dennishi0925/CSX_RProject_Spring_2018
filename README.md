@@ -32,3 +32,4 @@
 ### week4
 > * expected to finish **Chapter5** & **Chapter6** of R for Data Science
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
+> * expected to finish **HW4** aiming to get data using API and take use of wordcloud
