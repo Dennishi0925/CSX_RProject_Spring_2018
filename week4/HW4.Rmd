@@ -1,0 +1,31 @@
+---
+title: "HW4 API&wordcloud"
+author: "Dennis Tseng"
+date: "2018/3/22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+#### This is an trial to extract data from Taipei gov API and take use of wordcloud to visualize data.
+
+```{r message = F, warning = F}
+library(jsonlite)
+library(tidyverse)
+library(wordcloud2)
+rm(list = ls())
+data <- fromJSON("http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&rid=a8fd6811-ab29-40dd-9b92-383e8ebd2a4e") 
+str(data)
+df <- data$result$results
+str(df)
+
+ci <- df$CITYZONE %>% na.omit() %>%
+  str_replace_all("°Ï", "")
+tci <- table(ci)
+wordcloud2(tci)
+
+```
