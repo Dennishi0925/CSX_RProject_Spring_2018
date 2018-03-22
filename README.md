@@ -23,24 +23,12 @@
 > * finished **HW2** aiming to list courses on Datacamp
 > * learned [**kableExtra**](https://www.rdocumentation.org/packages/kableExtra/versions/0.7.0) packge
 
-
 ### week3
-> * expected to finish **Chapter5** & **Chapter6** of R for Data Science
-> * finished **Chapter3** of [Data Points](http://r4ds.had.co.nz)
 > * finished **ggplot2 chapter** of [R in action 2nd](http://kek.ksu.ru/eos/DataMining/1379968983.pdf)
 > * finished **HW3** aiming to practice data visualization
-> * finished first theree chapters of **ML1** courses on Datacamp
-> * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to to become a data journalist
+> * finished first theree chapters of **Supervised Learning** courses on Datacamp
+> * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to help become a data journalist
 
-
-
-### To-read books list roadmap for myself: 
-> * R programming Basic: learn R(first half), Hands on programming with R(Whole book), courses on Datacamp(Introduction and Intermediae)
-> * R programming Intermediate: The art of R programming(first half)
-> * R programming Advanced: Advanced R, The art of R programming(first half)
-> * Data tidying: R for data science, learn R(second half) 
-> * Data Visualization: courses on Datacamp(ggplot - lattice - ggvis), **R graphics cookbook**, **Visualize this**
-> * Data Journalism: data journalism handbook, 
-> * Statistics: OpenIntro
-> * Machine learning: machine learning with R, 
-(**bold** means I should read them recently)
+### week4
+> * expected to finish **Chapter5** & **Chapter6** of R for Data Science
+> * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
