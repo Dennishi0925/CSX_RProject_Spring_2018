@@ -30,6 +30,6 @@
 > * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to help become a data journalist
 
 ### week4
-> * expected to finish **Chapter5** & **Chapter6** of R for Data Science
+> * finished **Chapter5** & **Chapter6** of R for Data Science
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
-> * expected to finish **HW4** aiming to get data using API and take use of wordcloud
+> * finish **HW4** aiming to get data using API and take use of wordcloud
