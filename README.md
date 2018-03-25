@@ -31,5 +31,6 @@
 
 ### week4
 > * finished **Chapter5** & **Chapter6** of R for Data Science
+> * finished **Chapter1** & **Chapter2** of [Data Points](https://www.tidytextmining.com/)
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
 > * finish **HW4** aiming to get data using API and take use of wordcloud
