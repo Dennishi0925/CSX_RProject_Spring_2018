@@ -32,6 +32,7 @@
 ### week4
 > * finished **Chapter5** & **Chapter6** of R for Data Science
 > * finished **Chapter1** & **Chapter2** & **Chapter3** of [Text Mining with R](https://www.tidytextmining.com/)
+> * recommended two sites for tf-idf concepts in Chinese text mining: [intro of text preprocessing and tf-idf](http://www.cc.ntu.edu.tw/chinese/epaper/0031/20141220_3103.html) and [tf-idf text mining: with PTT NBA example](https://medium.com/@danjtchen/tf-idf-%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-%E4%BB%A5nba-ptt%E9%84%89%E6%B0%91%E5%9B%9E%E6%96%87%E7%82%BA%E4%BE%8B-26a898b900be)
 > * finished **HW4** aiming to get data using API and take use of wordcloud
 
 ### week5
