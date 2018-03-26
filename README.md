@@ -31,12 +31,11 @@
 
 ### week4
 > * finished **Chapter5** & **Chapter6** of R for Data Science
-> * finished **Chapter1** & **Chapter2** of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
+> * finished **Chapter1** & **Chapter2** & **Chapter3** of [Text Mining with R](https://www.tidytextmining.com/)
 > * finished **HW4** aiming to get data using API and take use of wordcloud
 
 ### week5
 > * expected to finish finished **Chapter7** & **Chapter6** of R for Data Science
 > * expected to finish finished **Chapter1** & **Chapter2** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish finished **HW5** aiming to practice tf-idf concept in R
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
-> * expected to finish finished **HW5** aiming to 
