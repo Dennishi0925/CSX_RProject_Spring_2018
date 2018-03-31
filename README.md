@@ -37,7 +37,13 @@
 > * finished **HW4** aiming to get data using API and take use of wordcloud
 
 ### week5
-> * expected to finish finished **Chapter7** & **Chapter6** of R for Data Science
-> * expected to finish finished **Chapter1** & **Chapter2** of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish finished **HW5** aiming to practice tf-idf concept in R
+> * expected to finish **Chapter7** & **Chapter8** of R for Data Science
+> * expected to finish **Chapter4** & **Chapter5** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish **HW5** aiming to practice tf-idf concept in R
+> * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
+
+### week6
+> * expected to finish **Chapter** & **Chapter** of R for Data Science
+> * expected to finish **Chapter4** & **Chapter5** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish **project1** aiming to visualize output for HW5
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
