@@ -37,13 +37,15 @@
 > * finished **HW4** aiming to get data using API and take use of wordcloud
 
 ### week5
-> * expected to finish **Chapter7** & **Chapter8** of R for Data Science
-> * expected to finish **Chapter4** & **Chapter5** of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish **HW5** aiming to practice tf-idf concept in R
-> * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
+> * finished **Chapter7** & **Chapter8** of R for Data Science
+> * finished **Chapter4** of [Text Mining with R](https://www.tidytextmining.com/)
+> * had a general understanding of css and Xpath
+> * practiced web crawling using [**rvest**](https://github.com/hadley/rvest)
+> * recommended two sites for web crawling in R: [NTU CSIE training: using R to do web crawling](https://github.com/yaojenkuo/r-crawler) ,[use xml2 to scrap CIA decrypted datamase](https://rpubs.com/skydome20/R-Note13-Web-Crawler-on-CIA-CREST-by-xml2), and [a series of R web crawling](https://ask.hellobi.com/blog/louwill12/9672) which includes intro of using R to crawl mutiple types of objects such as css, xpath, ajax, etc.
 
 ### week6
 > * expected to finish **Chapter** & **Chapter** of R for Data Science
 > * expected to finish **Chapter4** & **Chapter5** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish **HW5** aiming to practice tf-idf concept in R
 > * expected to finish **project1** aiming to visualize output for HW5
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
