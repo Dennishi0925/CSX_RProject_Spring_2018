@@ -44,9 +44,16 @@
 > * recommended two sites for web crawling in R: [NTU CSIE training: using R to do web crawling](https://github.com/yaojenkuo/r-crawler), [use xml2 to scrap CIA decrypted datamase](https://rpubs.com/skydome20/R-Note13-Web-Crawler-on-CIA-CREST-by-xml2), and [a series of R web crawling](https://ask.hellobi.com/blog/louwill12/9672) which includes intro of using R to crawl mutiple types of objects such as css, xpath, ajax, etc.
 
 ### week6
-> * expected to finish **Chapter9**of R for Data Science
+> * finished **Chapter5** & **Chapter6**  of [Text Mining with R](https://www.tidytextmining.com/)
+> * finished **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * recommended a sites for data visualization in data journalism using ggplot2 by a reporter from *Finantial Times*: [ggplot2 as a Creativity Engine](http://johnburnmurdoch.github.io/slides/r-ggplot/#/)
+> * expected to finish **HW5** aiming to practice tf-idf concept in R
+> * expected to finish **project1** aiming to visualize output for HW5
+
+### week7
+> * expected to finish **Chapter9** of R for Data Science
 > * expected to finish **Chapter5** & **Chapter6**  of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish **Chapter1** & **Chapter2** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * expected to finish **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
 > * recommended a sites for data visualization in data journalism using ggplot2 by a reporter from *Finantial Times*: [ggplot2 as a Creativity Engine](http://johnburnmurdoch.github.io/slides/r-ggplot/#/)
 > * expected to finish **HW5** aiming to practice tf-idf concept in R
 > * expected to finish **project1** aiming to visualize output for HW5
