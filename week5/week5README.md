@@ -1,4 +1,4 @@
-### HW5: 資料來源為PTT韓劇版**「花遊記」**的LIVE文（直播文）
+### HW5: 資料來源為PTT韓劇版「花遊記」的LIVE文（直播文）
 > * 用到了很多前面學會的觀念：斷詞, tf_idf, crawling, ggplot2，還有資料處理
 > * 在爬蟲的地方花了很多時間，參考 **台大資工訓練班郭老師** 的 [網站爬蟲的教學專案](https://github.com/yaojenkuo/r-crawler)，因為PTT也有些版面跟使用者的發文習慣有所改變，所以針對自己要爬的東西還有文字內容進行調整
 > * 參考 **CH1** & **CH3** of [Text Mining with R](https://www.tidytextmining.com/)
