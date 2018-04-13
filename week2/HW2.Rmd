@@ -1,8 +1,9 @@
 ---
 title: "HW2"
 author: "Dennis Tseng"
-date: "2018¦~3¤ë13¤é"
+date: "2018/03/13"
 output: html_document
+
 ---
 
 ```{r setup, include=FALSE}
@@ -18,6 +19,7 @@ library(rvest)
 library(stringr)
 library(knitr)
 library(kableExtra)
+options(Encoding="UTF-8")
 url = "https://www.datacamp.com/courses/all"
 webpage <- read_html(url, encoding = "UTF-8")
 
