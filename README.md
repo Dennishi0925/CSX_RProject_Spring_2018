@@ -20,12 +20,12 @@
 ### week2
 > * finished **Chapter3** & **Chapter4** of R for Data Science
 > * recommended two sites for R4DS' excercises: [Nate Day](https://www.nateday.me/r4ds_exercises.html) and [cimentadaj's github](https://github.com/cimentadaj/R4DS-Solutions/)
-> * finished **HW2** aiming to list courses on Datacamp
+> * finished [`HW2`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week2/HW2.html) aiming to list courses on Datacamp
 > * learned [**kableExtra**](https://www.rdocumentation.org/packages/kableExtra/versions/0.7.0) packge
 
 ### week3
 > * finished **ggplot2 chapter** of [R in action 2nd](http://kek.ksu.ru/eos/DataMining/1379968983.pdf)
-> * finished **HW3** aiming to practice data visualization
+> * finished [`HW3`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week3/HW3.html) aiming to practice data visualization
 > * finished first theree chapters of **Supervised Learning** courses on Datacamp
 > * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to help become a data journalist
 
@@ -34,7 +34,7 @@
 > * finished **Chapter1** & **Chapter2** & **Chapter3** of [Text Mining with R](https://www.tidytextmining.com/)
 > * recommended two sites for tf-idf concepts in Chinese text mining: [intro of text preprocessing and tf-idf](http://www.cc.ntu.edu.tw/chinese/epaper/0031/20141220_3103.html) and [tf-idf text mining: with PTT NBA example](https://medium.com/@danjtchen/tf-idf-%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-%E4%BB%A5nba-ptt%E9%84%89%E6%B0%91%E5%9B%9E%E6%96%87%E7%82%BA%E4%BE%8B-26a898b900be)
 > * recommended [R Notebooks tutorial](https://rmarkdown.rstudio.com/r_notebooks.htm) on Rstudio
-> * finished **HW4** aiming to get data using API and take use of wordcloud
+> * finished [`HW4`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week4/HW4.html) aiming to get data using API and take use of wordcloud
 
 ### week5
 > * finished **Chapter7** & **Chapter8** of R for Data Science
