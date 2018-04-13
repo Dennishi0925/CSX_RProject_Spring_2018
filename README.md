@@ -51,9 +51,14 @@
 
 ### week7
 > * expected to finish **Chapter9** of R for Data Science
+> * expected to finish **Chapter4** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * finished [`project1`](
+https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
+
+### week8
+> * expected to finish **Chapter9** of R for Data Science
 > * expected to finish **Chapter5** & **Chapter6**  of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
-> * expected to finish **HW5** aiming to practice tf-idf concept in R
+> * expected to finish **Chapter4** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
 > * expected to finish [`project1`](
 https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
