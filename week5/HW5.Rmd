@@ -20,6 +20,7 @@ library(lubridate)
 rm(list = ls())
 options(stringsAsFactors = F)
 Sys.setlocale(locale = "UTF-8")
+options(Encoding="UTF-8")
 assign("last.warning", NULL, envir = baseenv())
 ```
  

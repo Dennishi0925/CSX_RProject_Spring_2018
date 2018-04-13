@@ -9,13 +9,14 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### This is the 7.5.1.1 exercise from chapter 7 **Exploratory Data Analysis** in [The art of R programming](http://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf).
+#### This is the 7.5.1.1 exercise from chapter 7 **Exploratory Data Analysis** in *R for Data Science*.
 
-#### The question is "Use what you¡¦ve learned to improve the visualisation of the departure times of cancelled vs. non-cancelled flights."
+#### The question is "Use what you have learned to improve the visualisation of the departure times of cancelled vs. non-cancelled flights."
 
 ```{r , message = FALSE, results = FALSE}
 library(tidyverse)
 library(nycflights13)
+options(Encoding="UTF-8")
 data(flights)
 str(flights)
 

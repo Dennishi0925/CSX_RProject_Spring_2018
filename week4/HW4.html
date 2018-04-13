@@ -136,6 +136,7 @@ $(document).ready(function () {
 library(tidyverse)
 library(wordcloud2)
 rm(list = ls())
+options(Encoding=&quot;UTF-8&quot;)
 data &lt;- fromJSON(&quot;http://data.taipei/opendata/datalist/apiAccess?scope=resourceAquire&amp;rid=a8fd6811-ab29-40dd-9b92-383e8ebd2a4e&quot;) 
 str(data)</code></pre>
 <pre><code>## List of 1
@@ -176,8 +177,8 @@ str(df)</code></pre>
   str_replace_all(&quot;區&quot;, &quot;&quot;)
 tci &lt;- table(ci)
 wordcloud2(tci)</code></pre>
-<div id="htmlwidget-672ca864907363b37b80" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
-<script type="application/json" data-for="htmlwidget-672ca864907363b37b80">{"x":{"word":["士林","大同","大安","中山","中正","內湖","文山","北投","松山","信義","南港","萬華"],"freq":[9,1,8,8,3,17,7,8,7,2,3,4],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":10.5882352941176,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<div id="htmlwidget-e85407aa5111b5c6dd76" style="width:672px;height:480px;" class="wordcloud2 html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e85407aa5111b5c6dd76">{"x":{"word":["士林","大同","大安","中山","中正","內湖","文山","北投","松山","信義","南港","萬華"],"freq":[9,1,8,8,3,17,7,8,7,2,3,4],"fontFamily":"Segoe UI","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":10.5882352941176,"backgroundColor":"white","gridSize":0,"minRotation":-0.785398163397448,"maxRotation":0.785398163397448,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 </div>
 
