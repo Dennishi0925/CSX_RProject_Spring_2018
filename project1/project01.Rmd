@@ -1,0 +1,369 @@
+---
+title: "Analyzing 'Korean Odyssey' Live Streaming Articles on PTT"
+author: "Dennis Tseng, 2018/04/13"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+> This is the project I finished in NTU 2018 Data Science
+> Programming class, intructed by Pecu Tsai. The main purpose
+> is to use several conceps including crawler design, data
+> visualization, text cleaning, data manipulation, and basic
+> text mining.
+
+This project is my trial to extract data from PTT Koreadrama, and I tried to focus on LIVE article of "Korean Odyssey," which is traslated into "花遊記" or "和遊記" in Chinese.
+
+There are five parts in this project.
+**First**, I start with writing the crawler for crawling the article needed.  
+**Second**, I try to do some descriptive statistics and visualize the output to summarize the data.  
+**Third**, I calculate term frequency overall and each article respectively, then calculating tf-idf.  
+**Fourth**, I try to apply topic modeling in the 22 articles.
+
+Let's started!
+
+### **Preparation:** load the package needed
+```{r message = F, warning = F, results = 'hide'}
+library(tidyverse)
+library(tidytext)
+library(rvest)
+library(lubridate)
+library(topicmodels)
+library(jiebaR)
+rm(list = ls())
+windowsFonts(BL = windowsFont("微軟正黑體"))
+options(stringsAsFactors = F)
+#Sys.setlocale(locale = "UTF-8")
+assign("last.warning", NULL, envir = baseenv())
+```
+ 
+### **Article searching:** Find the article which is titled "[LIVE] 花遊記" or "[LIVE] 和遊記".
+```{r message = F, warning = F}
+part1 = "https://www.ptt.cc/bbs/KoreaDrama/index"
+part2 = ".html"
+# to crawl the articles needed
+abc <- paste0(part1, 1950:2025 , part2) %>%
+  map(read_html) 
+# to get all titles
+abc_title <- abc %>%
+  map(html_nodes,css= ".title a") %>%
+  map(html_text)
+# to check which article has the needed title
+check <- str_detect(unlist(abc_title), pattern = "\\LIVE] tvN 和遊記")
+sum(check)
+```
+
+There are 22 articles in total. To get the needed url, I am going to use the `check` index.
+
+```{r message = F, warning = F}
+abc_link <- abc %>%
+  lapply(html_nodes , css= ".title a") %>%
+  lapply(html_attr, "href") %>%
+  unlist()
+urls <- abc_link[check]
+article_links <- paste0("https://www.ptt.cc", urls) 
+```
+
+### **Crawler creating:** Use PTT crawler to get articles.
+```{r message = F, warning = F}
+ptt_article_crawler <- function(url) {
+  #main content
+  main_author = ".article-metaline:nth-child(1) .article-meta-value"
+  main_title = ".article-metaline-right+ .article-metaline .article-meta-value"
+  main_datetime = ".article-metaline+ .article-metaline .article-meta-value"
+  main_content = "#main-content"
+  main_link = ".f2 a"
+  #push content
+  push_tag = ".push-tag"
+  push_id = ".push-userid"
+  push_text = ".push-content"
+  push_datetime = ".push-ipdatetime"
+  # css argument 
+  main_column = c(main_author, main_title, main_datetime, main_content, main_link)
+  push_column = c(push_tag, push_id, push_text, push_datetime)
+  # main and push as two empty lists
+  main = list()
+  push = list()
+  raw_html <- url %>% read_html()
+  # for loop
+  for(i in 1:length(main_column)){
+    content <- raw_html %>% html_nodes(css = main_column[i]) %>% html_text()
+    main[[i]] <- content
+  }
+  main <- as.data.frame(matrix(unlist(main), nrow = 1))
+  colnames(main) <- c("main_author", "main_title", "main_datetime", "main_content", "main_link")
+  
+  for(i in 1:length(push_column)){
+    content <- raw_html %>% html_nodes(css = push_column[i]) %>% html_text()
+    push[[i]] <- content
+  }
+  push <- as.data.frame(push)
+  colnames(push) <-  c("push_tag", "push_id", "push_text", "push_datetime")
+  # clean
+  main$main_content <- main$main_content %>%
+    str_replace_all("\n", replacement = "") %>% # 清理斷行符號
+    str_replace_all("--※.+", replacement = "") %>% # 去尾
+    str_replace_all("作者.+:[0-9]{2}\\s[0-9]{4}", replacement = "") %>% #sentfromy
+    str_replace_all("-----Sent from.+", replacement = "")
+  main$weekday <- main$main_datetime %>% str_sub(1,4)
+  main$datetime <- main$main_datetime %>% str_sub(5,-1) %>% parse_datetime("%b %d %H:%M:%S %Y")
+  # main$authorip <- main$authorip %>% str_sub(str_locate(., "來")[1] + 4 , -2)
+  #######
+  push$push_text <- push$push_text%>% str_replace(pattern = ":", replacement = "") %>% str_replace_all(pattern = "\\s", replacement = "")
+  #2018/04/0100:42
+  push$push_datetime <- toString(year(main$datetime)) %>% str_c(push$push_datetime, sep = "/" ) %>% str_replace_all(" ", "")
+  push$date <- push$push_datetime %>% str_sub(1,10) %>% parse_date("%Y/%m/%d", locale = locale(tz = "Asia/Taipei"))
+  push$time <- push$push_datetime %>% str_sub(11,-1) %>% parse_time("%H:%M")
+  push$weekday <- wday(push$date, label = T)
+  push$month <- month(push$date)
+  push$day <- day(push$date)
+  push$hour <- hour(push$time)
+  push$minute <- minute(push$time)
+  #######
+  article <- list("main" = main, "push" = push)
+  return(article)
+}
+# use the function
+article_Korean_Odyssey = list()
+for(i in 1:length(article_links)) {
+  article_Korean_Odyssey[[i]] = ptt_article_crawler(article_links[i])
+}
+names(article_Korean_Odyssey)= str_c("article", c(1:22))
+```
+
+There are two parts of this crawler. First is to list all of the CSS tag. Second is to use `for` loop to crawl articles. Second is to clean the text using `stringr` package and get the detail of date and time using `lubridate` package .
+
+## **Push text extracting:** Extract tweets and add article ID.
+```{r message = F, warning = F}
+article_Korean_Odyssey_push = tibble()
+for(i in 1:22) {
+  article_Korean_Odyssey_push <- article_Korean_Odyssey[[i]]$push %>%
+    mutate(article = i) %>% rbind(article_Korean_Odyssey_push)
+}
+```
+
+Originally I have main content and tweet(push) content. Since live streaming articles' main content is the introduction of the drama, there is no needed to preserve it. Thus, here I only analyze tweet(push) content. However, it is important to crawl main content since main content of other articles such as drama review are important. The design of crarwler shold preserve it for further use.
+
+### **Descriptive statistics:** Visualize time distribution of tweets each article.
+```{r message = F, warning = F}
+article_descriptive <- select(article_Korean_Odyssey_push, article, date, time, month, day, hour, minute)
+article_descriptive <- as_tibble(article_descriptive)
+article_descriptive
+```
+
+There are combined date and time and individual columns as well. The former is for read and the latter is for manipulating data such as cutting them into intervals or filtering and mutating. Now I am going to visualize time distribution of tweets each article.
+
+```{r message = F, warning = F}
+for(i in 1:22) {
+  print(article_descriptive %>%
+          filter(article == i ) %>%
+          filter(date == date[1]) %>%
+          mutate(mingroup = factor(floor(minute/10)), hourgroup = factor(hour, ordered = T)) %>%
+          select(-date, -time) %>%
+          group_by(month, day, hourgroup, mingroup) %>%
+          count() %>%
+          ungroup %>%
+          mutate(minute = as.numeric(mingroup)*10, hour = hourgroup) %>%
+          unite("HM", c("month", "day", "hour", "minute"), sep = ":") %>%
+          ggplot() +
+          geom_col(aes(HM, n, fill = hourgroup), show.legend = FALSE) +  geom_line(aes(HM, n, group = 1), alpha = 1, col = "blue") +
+          labs(x = "時間", y = "出現次數", title = paste0("episode", i)) +
+          theme(plot.title = element_text(family = "BL", color = "black"), axis.title.y = element_text(angle = 90, family = "BL", color = "black"),
+  axis.text.x = element_text(angle = 60, family = "BL", hjust = 1, color = "black"),
+  axis.title.x = element_text(family = "BL", color = "black", face = "bold"))
+  )
+}
+```
+
+### **Word segmenting:** Use `jiebar` package to segment the word.
+```{r message = F, warning = F}
+# select push_text
+article_tidytext <- select(article_Korean_Odyssey_push, push_text, article)
+article_tidytext <- article_tidytext %>% as_tibble()
+# create dictionary
+KOword <- c("花遊記", "和遊記", "悟空", "孫悟空", "唐三藏", "昇基", "三藏", "漣序", "八戒", "牛魔王", "魔王", "黑龍", "503","阿斯女", "金剛箍", "齊天大聖", "六空", "韓周", "悟淨", "死鈴", "愛鈴")
+#length(KOword)
+KOword_tag <- rep("n", 21)
+# set the worker
+cutting = worker(bylines = TRUE)
+# add the dict to worker
+new_user_word(cutting, KOword, KOword_tag)
+# add stop words
+cutting  = worker(stop_word = "stopwords_chi_updated.csv")
+# segment the tweets
+tidy_KO_jiebar2 <- list()
+for(i in 1:22) {
+  article_i <- article_tidytext %>% filter(article == i)
+  tidy_KO_jiebar2[[i]]  <- segment(article_i$push_text, cutting)
+}
+# convert to tibble
+tidy_KO_jiebar2_tibble <- tibble()
+for(i in 1:22) {
+  gawy <- as_tibble(tidy_KO_jiebar2[[i]]) %>% mutate(article = i)
+  tidy_KO_jiebar2_tibble <- rbind(tidy_KO_jiebar2_tibble, gawy)
+}
+```
+
+**Tibble** is the revised version of **data.frame**, developed in `tibble` under `tidyverse`. I am accustommed to manipulate tibble so I usually convert data to tibble type. 
+
+### **Anti join:** Anti join stop_words to remove unwanted words.
+```{r message = F, warning = F}
+# there are still stopwords so anti_join
+names(tidy_KO_jiebar2_tibble) <- c("word", "article")
+stop_words_chinese <- read_csv("stopwords_chi_updated.csv", col_names = F)
+names(stop_words_chinese) <- c("number", "word")
+tidy_KO_jtu <- tidy_KO_jiebar2_tibble %>%
+  anti_join(stop_words_chinese, by = "word")
+stupid <- tibble(
+  word = c("XD", "推", "會", "應該", "覺得", "XDDD", "喔", "XDD", "QQ", "哈哈", "哈哈哈", "沒", "說"),
+  number = seq(747, 759, 1)
+)
+stop_words_chinese2 <- rbind(stop_words_chinese, stupid)
+```
+
+### **Term frequency:** Get the high frequency terms overall.
+```{r message = F, warning = F}
+tidy_KO_jtu %>%
+  anti_join(stop_words_chinese2, by = "word") %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  count(word, sort = T) %>%
+  mutate(word = reorder(word, n)) %>%
+  ungroup() %>%
+  top_n(30)
+```
+
+### **Term frequency vis:** Visualize the high frequency terms overall.
+```{r message = F, warning = F}
+tidy_KO_jtu_vis <- tidy_KO_jtu %>%
+  anti_join(stop_words_chinese2, by = "word") %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  count(word, sort = T) %>%
+  mutate(word = reorder(word, n)) %>%
+  #arrange(desc(n)) %>%
+  ungroup() %>%
+  top_n(30) %>%
+  ggplot(aes(x = word, y = n)) +
+  geom_col(show.legend = FALSE) +
+  ggtitle("整體高頻詞彙") +
+  labs(x = "高頻詞", y = "出現次數")
+windowsFonts(BL = windowsFont("微軟正黑體"))
+tidy_KO_jtu_vis + theme(plot.title = element_text(family = "BL", color = "black"), axis.title.y = element_text(angle = 90, family = "BL", color = "black"),
+  axis.text.x = element_text(angle = 60, family = "BL", hjust = 1, color = "black"),
+  axis.title.x = element_text(family = "BL", color = "black", face = "bold"))
+```
+
+After visualizing the whole corpus, now it's tiem to target each article.
+
+### **Term frequency:** Get the high frequency terms each article.
+```{r message = F, warning = F}
+tidy_KO_jtu_eachterm <- tidy_KO_jtu %>%
+  anti_join(stop_words_chinese2, by = c("word")) %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  count(article, word, sort = T) %>%
+  mutate(word = reorder(word, n)) %>%
+  ungroup() %>%
+  group_by(article) %>%
+  top_n(5) %>%
+  arrange(article)
+```
+
+### **Term frequency vis:** Visualize the high frequency terms each article.
+```{r message = F, warning = F}
+for(i in 1:22) {
+  print(
+    tidy_KO_jtu_eachterm %>%
+    filter(article == i) %>%
+    ggplot() +
+    geom_col(aes(word, n), fill = "white", colour = "red", show.legend = F) +
+    labs(title = paste0("episode", i),
+         x ="高頻詞", y = "出現次數")) +
+    theme(plot.title = element_text(family = "BL", color = "black"), axis.title.y = element_text(angle = 90, family = "BL", color = "black"),
+  axis.text.x = element_text(angle = 60, family = "BL", hjust = 1, color = "black"),
+  axis.title.x = element_text(family = "BL", color = "black", face = "bold"))
+}
+```
+
+### **Tf-idf Calculation:** Calculate tf-idf.
+```{r message = F, warning = F}
+tidy_KO_jiebar2_count <- tidy_KO_jiebar2_tibble %>% group_by(article) %>%
+  count(article, word, sort = T) %>%
+  ungroup()
+tidy_KO_tfidf <- tidy_KO_jiebar2_count %>%
+  bind_tf_idf(word, article, n)
+# preseve the top 30
+tidy_KO_tfidf %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  mutate(word = reorder(word, tf_idf)) %>%
+  top_n(30) %>%
+  ungroup
+```
+
+### **Tf-idf Visualization:** Visaulizate tf-idf.
+```{r message = F, warning = F}
+tidy_KO_tfidf_vis <- tidy_KO_tfidf %>%
+  arrange(desc(tf_idf)) %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  top_n(30) %>%
+  ungroup %>%
+  mutate(word = reorder(word, tf_idf)) %>%
+  ggplot(aes(x = word, y = tf_idf)) +
+  geom_col(show.legend = FALSE, fill = "white", col = "red") +
+  ggtitle("整體高tf_idf詞彙") +
+  labs(x = "高tf_idf詞", y = "tf_idf")
+tidy_KO_tfidf_vis + theme(axis.title.y = element_text(angle = 90, family = "BL", color = "black"),
+                        axis.text.x = element_text(angle = 60, family = "BL", hjust = 1, color = "black"),
+                        axis.title.x = element_text(family = "BL", color = "black", face = "bold"))
+
+```
+
+### **Topic modeling trial:** Use `topicmodels` to divide two topics.
+```{r message = F, warning = F}
+test <- tidy_KO_jtu %>%
+  anti_join(stop_words_chinese2, by = c("word")) %>%
+  mutate(word = factor(word, levels = rev(unique(word)))) %>%
+  count(article, word, sort = T) 
+# from tidytext to TermDocumentMatrix
+gawy = test %>%
+  cast_dtm(article, word, n)
+# Hypothsize that there are two topics
+gawy_lda <- LDA(gawy, k = 2, control = list(seed = 1234))
+gawy_topics <- tidy(gawy_lda, matrix = "beta")
+```
+
+### **Topic modeling vis:** Compare topic 1 and topic 2.
+```{r message = F, warning = F}
+# preserve top 10
+gawy_top_terms <- gawy_topics %>%
+  group_by(topic) %>%
+  top_n(10, beta) %>%
+  ungroup() %>%
+  arrange(topic, -beta)
+# data vis
+gawy_top_terms %>%
+  mutate(term = reorder(term, beta)) %>%
+  ggplot(aes(term, beta, fill = factor(topic))) +
+  geom_col(show.legend = FALSE) +
+  facet_wrap(~ topic, scales = "free") +
+  coord_flip()
+```
+
+It is quite clear that there are not differences between two topics. We can say that tweets of 22 article don't have big differences.
+
+### **Topic modeling check:** Double check whethere there are differnces between two topics.
+```{r message = F, warning = F}
+gawy_documents <- tidy(gawy_lda, matrix = "gamma")
+gawy_documents %>%
+  filter(gamma >= 0.1)
+```
+
+It is also clear that almost every article contain only one topic. The hypothesis is rejected.
+
+### Conclusion
+
+In this porject, I applied the concepts learned and tried many useful packages such as `dplyr`, `tidyr`, and `stringr`. There are some problems I can't deal with. For example, I spent much time in setting `ggplot2` arguments due to the unfamiliarity. I am looking forward to next project!
