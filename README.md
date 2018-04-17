@@ -50,8 +50,8 @@
 > * finished [`HW5`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week5/HW5.html) aiming to practice tf-idf concept in R
 
 ### week7
-> * expected to finish **Chapter9** of R for Data Science
-> * expected to finish **Chapter4** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * tried to crawl Instagram public data using [**instaR**](https://www.rdocumentation.org/packages/instaR/versions/0.2.4) packge but failed due to adjusted policy by Instagram
+> * finished **Chapter4** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
 > * finished [`project1`](
 https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
