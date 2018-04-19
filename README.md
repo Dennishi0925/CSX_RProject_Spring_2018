@@ -38,26 +38,32 @@
 
 ### week5
 > * finished **Chapter7** & **Chapter8** of R for Data Science
-> * finished **Chapter4** of [Text Mining with R](https://www.tidytextmining.com/)
+> * finished **Chapter4** of [Text Mining with R]
 > * had a general understanding of css and Xpath
 > * practiced web crawling using [**rvest**](https://github.com/hadley/rvest)
 > * recommended two sites for web crawling in R: [NTU CSIE training: using R to do web crawling](https://github.com/yaojenkuo/r-crawler), [use xml2 to scrap CIA decrypted datamase](https://rpubs.com/skydome20/R-Note13-Web-Crawler-on-CIA-CREST-by-xml2), and [a series of R web crawling](https://ask.hellobi.com/blog/louwill12/9672) which includes intro of using R to crawl mutiple types of objects such as css, xpath, ajax, etc.
 
 ### week6
-> * finished **Chapter5** & **Chapter6**  of [Text Mining with R](https://www.tidytextmining.com/)
-> * finished **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * finished **Chapter5** & **Chapter6**  of [Text Mining with R]m/)
+> * finished **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R]
 > * recommended a sites for data visualization in data journalism using ggplot2 by a reporter from *Finantial Times*: [ggplot2 as a Creativity Engine](http://johnburnmurdoch.github.io/slides/r-ggplot/#/)
 > * finished [`HW5`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week5/HW5.html) aiming to practice tf-idf concept in R
 
 ### week7
-> * finished **Chapter7**  of [Text Mining with R](https://www.tidytextmining.com/)
+> * finished **Chapter7**  of [Text Mining with R]
 > * tried to crawl Instagram public data using [**instaR**](https://www.rdocumentation.org/packages/instaR/versions/0.2.4) packge but failed due to adjusted policy by Instagram
-> * finished **Chapter4** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * finished **Chapter4** of [Machine Learning with R]
 > * finished [`project1`](
 https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week8
-> * expected to finish **Chapter** of R for Data Science
-> * expected to finish **Chapter** of [Text Mining with R](https://www.tidytextmining.com/)
-> * expected to finish **Chapter** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * expected to finish **Chapter9** of R for Data Science
+> * expected to finish **Chapter8** & **Chapter9** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish **Chapter5** of [Machine Learning with R]
+> * expected to finish **Shiny** courses on Datacamp
+
+### week9
+> * expected to finish **Chapter9** of R for Data Science
+> * expected to finish **Chapter8** & **Chapter9** of [Text Mining with R](https://www.tidytextmining.com/)
+> * expected to finish **Chapter5** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
