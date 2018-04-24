@@ -12,13 +12,13 @@
 
 
 ### week1
-> * finished **Chapter1** & **Chapter2** of [R for Data Science](http://r4ds.had.co.nz)
+> * finished **Chapter1** & **Chapter2** of [*R for Data Science*](http://r4ds.had.co.nz)
 > * finished **R string manipulation** & **R markdown** courses on Datacamp
 > * finished **Chapter7** of [Learn R](http://shop.oreilly.com/product/0636920028352.do)
 > * learned [**stringr**](https://www.rdocumentation.org/packages/stringr/versions/1.1.0) packge
 
 ### week2
-> * finished **Chapter3** & **Chapter4** of R for Data Science
+> * finished **Chapter3** & **Chapter4** of *R for Data Science*
 > * recommended two sites for R4DS' excercises: [Nate Day](https://www.nateday.me/r4ds_exercises.html) and [cimentadaj's github](https://github.com/cimentadaj/R4DS-Solutions/)
 > * finished [`HW2`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week2/HW2.html) aiming to list courses on Datacamp
 > * learned [**kableExtra**](https://www.rdocumentation.org/packages/kableExtra/versions/0.7.0) packge
@@ -30,14 +30,14 @@
 > * recommended **[Quick Guide to Data Journalism](https://www.datacamp.com/community/blog/data-journalism-guide-tools)**, providing a complete gide to help become a data journalist
 
 ### week4
-> * finished **Chapter5** & **Chapter6** of R for Data Science
+> * finished **Chapter5** & **Chapter6** of *R for Data Science*
 > * finished **Chapter1** & **Chapter2** & **Chapter3** of [*Text Mining with R*](https://www.tidytextmining.com/)
 > * recommended two sites for tf-idf concepts in Chinese text mining: [intro of text preprocessing and tf-idf](http://www.cc.ntu.edu.tw/chinese/epaper/0031/20141220_3103.html) and [tf-idf text mining: with PTT NBA example](https://medium.com/@danjtchen/tf-idf-%E6%96%87%E5%AD%97%E6%8E%A2%E5%8B%98-%E4%BB%A5nba-ptt%E9%84%89%E6%B0%91%E5%9B%9E%E6%96%87%E7%82%BA%E4%BE%8B-26a898b900be)
 > * recommended [R Notebooks tutorial](https://rmarkdown.rstudio.com/r_notebooks.htm) on Rstudio
 > * finished [`HW4`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week4/HW4.html) aiming to get data using API and take use of wordcloud
 
 ### week5
-> * finished **Chapter7** & **Chapter8** of R for Data Science
+> * finished **Chapter7** & **Chapter8** of *R for Data Science*
 > * finished **Chapter4** of *Text Mining with R*
 > * had a general understanding of css and Xpath
 > * practiced web crawling using [**rvest**](https://github.com/hadley/rvest)
@@ -45,25 +45,25 @@
 
 ### week6
 > * finished **Chapter5** & **Chapter6**  of *Text Mining with R*
-> * finished **Chapter1** & **Chapter2** & **Chapter3** of [Machine Learning with R]
+> * finished **Chapter1** & **Chapter2** & **Chapter3** of [*Machine Learning with R*](https://the-eye.eu/public/Books/Programming/Machine%20Learning%20with%20R%20-%20Second%20Edition%20%5BeBook%5D.pdf)
 > * recommended a sites for data visualization in data journalism using ggplot2 by a reporter from *Finantial Times*: [ggplot2 as a Creativity Engine](http://johnburnmurdoch.github.io/slides/r-ggplot/#/)
 > * finished [`HW5`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week5/HW5.html) aiming to practice tf-idf concept in R
 
 ### week7
 > * finished **Chapter7**  of *Text Mining with R*
 > * tried to crawl Instagram public data using [**instaR**](https://www.rdocumentation.org/packages/instaR/versions/0.2.4) packge but failed due to adjusted policy by Instagram
-> * finished **Chapter4** of Machine Learning with R
+> * finished **Chapter4** of *Machine Learning with R*
 > * finished [`project1`](
 https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week8
-> * expected to finish **Chapter9** of R for Data Science
+> * expected to finish **Chapter9** of *R for Data Science*
 > * expected to finish **Chapter8** & **Chapter9** of *Text Mining with R*
-> * expected to finish **Chapter5** of [Machine Learning with R]
+> * expected to finish **Chapter5** of *Machine Learning with R*
 > * finished **Building Web Applications in R with Shiny** courses on Datacamp
 
 ### week9
-> * expected to finish **Chapter9** of R for Data Science
+> * expected to finish **Chapter9** of *R for Data Science*
 > * expected to finish **Chapter8** & **Chapter9** of *Text Mining with R*
-> * expected to finish **Chapter5** of [Machine Learning with R](http://kartolo.sby.datautama.net.id/PacktPub/Machine_Learning_with_R_-_Second_Edition.pdf)
+> * expected to finish **Chapter5** of *Machine Learning with R*
 > * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
