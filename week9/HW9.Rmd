@@ -1,0 +1,143 @@
+---
+title: "HW9"
+author: "Dennis Tseng"
+date: "2018/5/2"
+output: html_document
+---
+
+####This is an trial to explore Titanic dataset on 
+ 
+####load the package needed
+```{r message = F, warning = F}
+library(tidyverse)
+options(stringsAsFactors = F)
+```
+ 
+####step1: to load and clean data initially
+```{r message = F, warning = F}
+# Load data
+Train <- read_csv("train.csv", col_names = T)
+Target <- read_csv("test.csv", col_names = T)
+# Browse data
+class(Train)
+class(Target)
+str(Train)
+str(Target)
+colnames(Train)
+colnames(Target)
+# Bind data and remove useless columns
+#Target$Survived <- NA
+Full <- full_join(Train, Target)
+glimpse(Full)
+Full <- Full[, -(1:2)]
+glimpse(Full)
+# adjust data type
+Full$Pclass <- factor(Full$Pclass)
+Full$Sex <- factor(Full$Sex)
+Full$Embarked <- factor(Full$Embarked)
+# Checking NA
+NAoutput <- map_df(Full, function(x) sum(is.na(x)))
+#sapply(Full, function(x) sum(is.na(x)))
+glimpse(NAoutput)
+```
+ 
+####step2: to deal with NA: Fare
+```{r message = F, warning = F}
+#Age, Fare, Cabin, Embarked need further processing
+# Checking Fare
+Fare_miss <- which(is.na(Full$Fare))
+glimpse(Full[Fare_miss, ])
+summary(Full$Fare)
+# Sex & Pclass
+Full %>% filter(Sex == "male", Pclass == 3) %>%
+  ggplot(aes(x = Fare)) + 
+  geom_bar(stat = "bin", bins = 15)
+Full %>% filter(Sex == "male", Pclass == 3) %>%
+  summarize(median = median(Fare, na.rm = T))
+Full %>% filter(Sex == "male", Pclass == 3) %>% count()
+# Check Age
+Full %>% filter(Sex == "male", Pclass == 3) %>%
+  ggplot(aes(x = Age)) +
+  geom_bar(stat = "bin", bins = 30)
+# Sex & Pclass & Age
+Full %>% filter(Sex == "male", Pclass == 3, Age >= 45) %>%
+  ggplot(aes(x = Fare)) +
+  geom_bar(stat = "bin", bins = 30)
+Full %>% filter(Sex == "male", Pclass == 3, Age >= 45) %>%
+  summarize(median = median(Fare, na.rm = T))
+Full %>% filter(Sex == "male", Pclass == 3, Age >= 45) %>% count()
+Full$Fare[Fare_miss] <- 7.9
+```
+ 
+####step3: to deal with NA: Embarked
+```{r message = F, warning = F}
+# Checking Embarked
+glimpse(Full)
+Embarked_miss <- which(is.na(Full$Embarked))
+glimpse(Full[Embarked_miss, ])
+glimpse(Full$Embarked)
+Full %>% filter(Sex == "female", Pclass == 1, Fare == 80)  %>% count() 
+# Sex & Pclass
+Full %>% filter(Sex == "female", Pclass == 1) %>%
+  ggplot(aes(x = Embarked)) + 
+  geom_bar(width = 0.3)
+Full %>% filter(Sex == "female", Pclass == 1) %>%
+  ggplot(aes(x = Age, y = Fare)) + 
+  geom_point(aes(colour = Embarked))
+Full %>% filter(Sex == "female", Pclass == 1) %>%
+  ggplot(aes(x = Embarked, y = Fare)) + 
+  geom_point()
+Full %>% filter(Sex == "female", Pclass == 1) %>%
+  ggplot(aes(x = Embarked, y = Fare)) + 
+  geom_jitter(aes(colour = Pclass))
+Full %>% ggplot(aes(x = Embarked, y = Fare)) +
+  geom_boxplot(aes(colour = Pclass))
+Full$Embarked[Embarked_miss] <- 'C'
+```
+ 
+####step4: to deal with NA: title
+```{r message = F, warning = F}
+# Check Name
+head(Full$Name, 10)
+Full$title <- str_replace_all(Full$Name, '(.*, )|(\\..*)', '')
+table(Full$title)
+rare_title <- c('Dona', 'Lady', 'the Countess','Capt', 'Col', 'Don', 'Dr', 'Major', 'Rev', 'Sir', 'Jonkheer')
+Full$title[Full$title == 'Mlle']  <- 'Miss' 
+Full$title[Full$title == 'Ms'] <- 'Miss'
+Full$title[Full$title == 'Mme'] <- 'Mrs' 
+Full$title[Full$title %in% rare_title] <- 'Rare Title'
+Full$title <- factor(Full$title)
+table(Full$Sex, Full$title)
+Full %>%
+  ggplot(aes(x = title, y = Age)) +
+  geom_boxplot(aes(colour = Sex))
+glimpse(Full)
+Full %>% group_by(.$title) %>%
+  summarize(meanA = mean(Age, na.rm = T))
+Full$Age[Full$title == 'Master'] = 5.48
+Full$Age[Full$title == 'Miss'] = 21.8
+Full$Age[Full$title == 'Mr'] = 32.3
+Full$Age[Full$title == 'Mrs'] = 36.9
+Full$Age[Full$title == 'Rare Title'] = 45.2
+map_df(Full, function(x) sum(is.na(x))) %>% glimpse()
+Full[, "Cabin"] <- NULL
+train_final = Full[1:891, ]
+train_final[, c("Name","Ticket")] <- NULL
+target_final = Full[892:1309, ]
+target_final[, c("Name","Ticket")] <- NULL
+train_labels <- Train$Survived
+```
+
+####step5: to use random forest package
+```{r message = F, warning = F}
+train_final$Survived <- train_labels
+# Set a random seed
+set.seed(754)
+library(randomForest)
+glimpse(train_final)
+# Build the model (note: not all possible variables are used)
+rf_model <- randomForest(factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train_final)
+prediction <- predict(rf_model, target_final)
+prediction
+```
+
