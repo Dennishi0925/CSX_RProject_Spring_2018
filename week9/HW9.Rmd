@@ -5,8 +5,13 @@ date: "2018/5/2"
 output: html_document
 ---
 
-####This is an trial to explore Titanic dataset on 
- 
+####This is an trial to explore Titanic dataset on Kaggle
+> 因為不熟feature engineering，所以這次作業參考兩個來源：
+    
+> [exploring-survival-on-the-titanic](https://www.kaggle.com/mrisdal/exploring-survival-on-the-titanic)
+   
+> [titanic-passenger-survival-forecast-r](https://www.kaggle.com/haojianfeng/titanic-passenger-survival-forecast-r)
+   
 ####load the package needed
 ```{r message = F, warning = F}
 library(tidyverse)
