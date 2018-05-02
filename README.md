@@ -57,13 +57,7 @@
 https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week8
-> * expected to finish **Chapter9** of *R for Data Science*
-> * expected to finish **Chapter8** & **Chapter9** of *Text Mining with R*
-> * expected to finish **Chapter5** of *Machine Learning with R*
 > * finished **Building Web Applications in R with Shiny** courses on Datacamp
 
 ### week9
-> * expected to finish **Chapter9** of *R for Data Science*
-> * expected to finish **Chapter8** & **Chapter9** of *Text Mining with R*
-> * expected to finish **Chapter5** of *Machine Learning with R*
-> * expected to finish **Chapter1** of [Data Points](http://r4ds.had.co.nz)
+> * finished [`HW9`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week9/HW9.html) exploring Titanics dataset on Kaggle
