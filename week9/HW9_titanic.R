@@ -115,4 +115,6 @@ glimpse(train_final)
 rf_model <- randomForest(factor(Survived) ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train_final)
 
 prediction <- predict(rf_model, target_final)
-prediction
+str(prediction)
+prediction_df <- as.data.frame(prediction)
+write_csv(prediction_df, "titanic_prediction.csv")
