@@ -61,3 +61,4 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week9
 > * finished [`HW9`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week9/HW9.html) exploring Titanics dataset on Kaggle
+> * [`HW9.csv`](https://github.com/Dennishi0925/CSX_RProject_Spring_2018/blob/master/week9/titanic_prediction.csv)
