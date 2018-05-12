@@ -68,4 +68,4 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 > * practiced **ggplot2** with NTUSC data
 
 ### week11
-> * finished *R Graphics Cookbook*
+> * finished **Chapter4** of *R Graphics Cookbook*
