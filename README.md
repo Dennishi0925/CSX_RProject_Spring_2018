@@ -69,3 +69,6 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week11
 > * finished **Chapter4** of *R Graphics Cookbook*
+
+### week12
+> * finished **Chapter5** of *R Graphics Cookbook*
