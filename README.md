@@ -75,3 +75,9 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 > * finished **Chapter5** of *R Graphics Cookbook*
 > * finished **Chapter9** & **Chapter10** of *R for Data Science*
 > * 10.4.4 ("What weather conditions make it more likely to see a delay?") of *R for Data Science* is worth noting
+
+### week13
+> * finished **Chapter11** of *R for Data Science*
+
+### week14
+> * finished
