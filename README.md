@@ -80,4 +80,8 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 > * finished **Chapter11** of *R for Data Science*
 
 ### week14
-> * finished
+> * finished **Chapter12** of *R for Data Science*
+> * practiced **shiny** with NTUSC data
+
+### week14
+> * finished **Chapter13** of *R for Data Science*
