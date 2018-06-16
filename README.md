@@ -10,7 +10,10 @@
 > * finished first 7 chapters of [The art of R programming](http://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)
 > * finished [Hands-On Programming with R](http://shop.oreilly.com/product/0636920028574.do)
 
-
+### Homework & Project links
+> * [`HW2`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week2/HW2.html), [`HW3`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week3/HW3.html), [`HW4`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week4/HW4.html), [`HW5`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week5/HW5.html)
+> * [`project1`](
+https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html), [`project2`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week9/HW9.html), [`project3`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week9/HW9.html), 
 ### week1
 > * finished **Chapter1** & **Chapter2** of [*R for Data Science*](http://r4ds.had.co.nz)
 > * finished **R string manipulation** & **R markdown** courses on Datacamp
