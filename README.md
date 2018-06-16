@@ -62,7 +62,7 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week9
 > * finished [`project3`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week9/HW9.html) exploring Titanics dataset on Kaggle
-> * [`project3.csv`](https://github.com/Dennishi0925/CSX_RProject_Spring_2018/blob/master/week9/titanic_prediction.csv)
+> * results:[`project3.csv`](https://github.com/Dennishi0925/CSX_RProject_Spring_2018/blob/master/week9/titanic_prediction.csv)
 
 ### week10
 > * finished **Chapter1** & **Chapter2** & **Chapter3** of [*R Graphics Cookbook*](http://www.cookbook-r.com/Graphs/)
@@ -86,4 +86,9 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 ### week14
 > * finished **Chapter13** of *R for Data Science*
 > * finished [`final proposal`](https://drive.google.com/open?id=1wLcZlZeyISDsWmdkr50tT1z5UmRNJx2h)
+ for NTUSC data
+ 
+ ### week15
+> * finished **Chapter** of *R for Data Science*
+> * finished [`final presentation`]()
  for NTUSC data
