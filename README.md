@@ -93,5 +93,5 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
  
  ### week15
 > * finished **Chapter** of *R for Data Science*
-> * finished [`final presentation`]()
+> * finished [`final presentation`](https://drive.google.com/open?id=1FJdYLb8Z0pno8GqUE3e79dVPILzaJ0q-)
  for NTUSC data
