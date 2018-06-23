@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Scope of Data</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NTUSC Attendance Rate Open Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    NTUSC
+  </a>
+</li>
+<li>
+  <a href="scope.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Scope
+  </a>
+</li>
+<li>
+  <a href="data_processing.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Processing
+  </a>
+</li>
+<li>
+  <a href="data_visualizing.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Visualizing
+  </a>
+</li>
+<li>
+  <a href="data_modeling.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Modeling
+  </a>
+</li>
+<li>
+  <a href="data_communicating.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Communicating
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Scope of Data</h1>
+
+</div>
+
+
+<div id="brief-introduction" class="section level3">
+<h3><strong>Brief Introduction</strong></h3>
+<p>鞈&lt;96&gt;蜓閬&lt;9c&gt;<ba>遢嚗<b8>隞賣<e5>憭批飛隞<a3><e5>撣剛<b3>&lt;96&gt;<bc>銝隞賢&lt;89&gt;<e5>憭批飛隞<a3><e6>&lt;8a&gt;巨鞈&lt;96&gt;&lt;89&gt;隞亙<be>憭批飛隞<a3><e6>&lt;9c&gt;&lt;9a&gt;&lt;87&gt;<e6>&lt;90&gt;<b0><be><bc><be>&lt;89&gt;隞亙<be>憭折憪&lt;9c&gt;&lt;9a&gt;&lt;87&gt;<e6>&lt;90&gt;<b0><be><bc><bd>&lt;9b&gt;<e6>&lt;9c&gt;<ba>歇蝬甇瑕鞈&lt;96&gt;<bc>&lt;89&gt;隞交&lt;88&gt;<e6><e5>&lt;90&gt;<b2>結撠<a0><e9><a8>嚗<e6><e7>&lt;9a&gt;<b0>楊<e9><e7><e6>撟急&lt;88&gt;<b0><aa><a1><e5>鈭<bc>&lt;9d&gt;虜<e6>&lt;84&gt;<ac><bb>&lt;82&gt;</p>
+</div>
+<div id="ntusc-attendance-data" class="section level3">
+<h3><strong>NTUSC Attendance Data</strong></h3>
+<p><strong>Data description:</strong> NTUSC attendance data of each session<br />
+<strong>Data range:</strong> 104-1 ~ 106-1<br />
+<strong>Data size:</strong> 3843 observations * 13 variables<br />
+<strong>Data Overview:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">college</th>
+<th align="left">start</th>
+<th align="left">end</th>
+<th align="left">name</th>
+<th align="left">dept</th>
+<th align="right">grade</th>
+<th align="left">general</th>
+<th align="right">term</th>
+<th align="left">keys</th>
+<th align="left">values</th>
+<th align="left">present</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">黃申</td>
+<td align="left">歷史系</td>
+<td align="right">4</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">present</td>
+<td align="left">present</td>
+</tr>
+<tr class="even">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">樓彥成</td>
+<td align="left">中文系</td>
+<td align="right">4</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">skip</td>
+<td align="left">not</td>
+</tr>
+<tr class="odd">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">周允梵</td>
+<td align="left">哲學系</td>
+<td align="right">2</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">present</td>
+<td align="left">present</td>
+</tr>
+<tr class="even">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">陳俊臣</td>
+<td align="left">哲學系</td>
+<td align="right">2</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">leave</td>
+<td align="left">not</td>
+</tr>
+<tr class="odd">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">牛許時</td>
+<td align="left">戲劇系</td>
+<td align="right">2</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">skip</td>
+<td align="left">not</td>
+</tr>
+<tr class="even">
+<td align="left">文學院</td>
+<td align="left">103-2</td>
+<td align="left">104-1</td>
+<td align="left">劉宇珺</td>
+<td align="left">日文系</td>
+<td align="right">4</td>
+<td align="left">1041_current</td>
+<td align="right">1041</td>
+<td align="left">1041_prep_0915</td>
+<td align="left">skip</td>
+<td align="left">not</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="ntusc-vote-data" class="section level3">
+<h3><strong>NTUSC Vote Data</strong></h3>
+<p><strong>Data description:</strong> NTUSC vote data of each term<br />
+<strong>Data range:</strong> 104-1 ~ 106-1<br />
+<strong>Data size:</strong> 186 observations * 11 variables<br />
+<strong>Data Overview:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">college</th>
+<th align="left">name</th>
+<th align="left">dept</th>
+<th align="left">term</th>
+<th align="right">Attnd_Rate</th>
+<th align="right">support_rate</th>
+<th align="right">nonobj_Rate</th>
+<th align="right">vote_rate</th>
+<th align="left">competitive</th>
+<th align="right">void_rate</th>
+<th align="right">college_population_rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">工學院</td>
+<td align="left">王羿方</td>
+<td align="left">土木系</td>
+<td align="left">105-2</td>
+<td align="right">1.00</td>
+<td align="right">0</td>
+<td align="right">0.44</td>
+<td align="right">0.02</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="even">
+<td align="left">工學院</td>
+<td align="left">周維理</td>
+<td align="left">土木系</td>
+<td align="left">104-1</td>
+<td align="right">0.50</td>
+<td align="right">0</td>
+<td align="right">0.29</td>
+<td align="right">0.03</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="odd">
+<td align="left">工學院</td>
+<td align="left">張聿棨</td>
+<td align="left">土木系</td>
+<td align="left">104-2</td>
+<td align="right">0.57</td>
+<td align="right">0</td>
+<td align="right">0.59</td>
+<td align="right">0.01</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="even">
+<td align="left">工學院</td>
+<td align="left">駱建澄</td>
+<td align="left">土木系</td>
+<td align="left">104-1</td>
+<td align="right">0.55</td>
+<td align="right">0</td>
+<td align="right">0.24</td>
+<td align="right">0.03</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="odd">
+<td align="left">工學院</td>
+<td align="left">林冠廷</td>
+<td align="left">工工所</td>
+<td align="left">105-1</td>
+<td align="right">0.80</td>
+<td align="right">0</td>
+<td align="right">0.51</td>
+<td align="right">0.03</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+<tr class="even">
+<td align="left">工學院</td>
+<td align="left">林後維</td>
+<td align="left">工海系</td>
+<td align="left">104-2</td>
+<td align="right">0.86</td>
+<td align="right">0</td>
+<td align="right">0.42</td>
+<td align="right">0.01</td>
+<td align="left">0</td>
+<td align="right">0</td>
+<td align="right">0.16</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Data description:</strong> NTUSC attendance data of each session<br />
+<strong>Data range:</strong> 104-1 ~ 106-1<br />
+<strong>Data size:</strong> 3843 observations * 13 variables</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

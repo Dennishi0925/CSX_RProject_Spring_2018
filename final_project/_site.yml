@@ -1,0 +1,27 @@
+name: "NTUSC"
+navbar:  
+  title: "NTUSC Attendance Rate Open Data"
+  left:  # you can also use 'right'
+    - text: "NTUSC"
+      icon: fa-home  # handy way to use FontAwesome icons in nav!
+      href: index.html  # don't link to the .Rmd file
+    - text: "Scope"
+      icon: fa-newspaper-o
+      href: scope.html
+    - text: "Processing"
+      icon: fa-newspaper-o
+      href: data_processing.html
+    - text: "Visualizing"
+      icon: fa-newspaper-o
+      href: data_visualizing.html
+    - text: "Modeling"
+      icon: fa-newspaper-o
+      href: data_modeling.html
+    - text: "Communicating"
+      icon: fa-newspaper-o
+      href: data_communicating.html
+output:
+  html_document:
+    theme: united
+    highlight: textmate
+    css: style.css

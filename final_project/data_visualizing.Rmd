@@ -1,0 +1,148 @@
+---
+title: "Data Visualizing"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **NTUSC Attendance Data**
+
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+library(tidyverse)
+data_pornot <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datapor") %>% select(-c(X1, ID))
+data_lm <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datalm")
+```
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>%
+  filter(term == "1061") %>%
+  select(college, start, end, name, dept, grade, values) %>%
+  group_by(college, values) %>%
+  count() %>%
+  ungroup %>%
+  group_by(college) %>%
+  mutate(percent = round(n/sum(n), 2), total = sum(n)) %>%
+  arrange(desc(n)) %>%
+  ungroup %>%
+  ggplot(aes(x = college, y = percent, fill = values)) +
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_fill_brewer(palette="Pastel1")
+```
+
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>%
+  filter(term == "1061") %>%
+  select(college, grade, dept, name, term, keys, present) %>%
+  mutate(dummyp = if_else(present == "not", 0, 1)) %>%
+  group_by(college, keys) %>%
+  mutate(Attnd_Rt = round(sum(dummyp)/n(), 2)) %>%
+  ggplot(aes(x = keys, y = college, fill = Attnd_Rt)) +
+  geom_tile() +
+  scale_fill_gradient(high = "red", low = "white") +
+  guides(fill = guide_legend(title.position="top")) +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>% filter(term == "1061") %>%
+  group_by(keys, values) %>%
+  count() %>%
+  ungroup() %>%
+  group_by(keys) %>%
+  mutate(percent = round(n/sum(n), 2)) %>%
+  ggplot() +
+  geom_bar(aes(x = keys, y = percent, fill = factor(values, levels = c("skip","leave","present"))), stat = "identity") +
+  geom_line(aes(x = keys, y = percent, group = values)) +
+  coord_flip() +
+  guides(fill=guide_legend(title="present")) +
+  facet_grid(.~values) +
+  scale_fill_brewer(palette="Pastel1")
+```
+
+
+#collegeplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>%
+  select(college, grade, dept, name, term, keys, present) %>%
+  mutate(college = factor(college), term = factor(term)) %>%
+  group_by(college, term, present) %>%
+  count() %>%
+  ungroup %>%
+  group_by(college, term) %>%
+  mutate(percent = round(n/sum(n), 2), total = sum(n)) %>%
+  filter(present == "present") %>%
+  ungroup %>%
+  ggplot(aes(term, percent)) +
+  geom_col(width = 0.7, fill="lightblue", colour="black") +
+  #geom_line(aes(term, percent, group = college)) +
+  facet_wrap(~college, ncol = 4) +
+  theme(strip.background = element_rect(fill="grey"))
+```
+
+
+#termplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>%
+  select(college, grade, dept, name, term, keys, present) %>%
+  mutate(grade = factor(grade), term = factor(term)) %>%
+  group_by(grade, term, present) %>%
+  count() %>%
+  ungroup %>%
+  group_by(grade, term) %>%
+  mutate(percent = round(n/sum(n), 2), total = sum(n)) %>%
+  filter(present == "present") %>%
+  ungroup %>%
+  ggplot(aes(term, percent)) +
+  geom_col(width = 0.7, fill="lightblue", colour="black") +
+  #geom_line(aes(term, percent, group = college)) +
+  facet_wrap(~grade, ncol = 5) +
+  theme(strip.background = element_rect(fill="grey"))
+```
+
+#gradeplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_pornot %>%
+  select(college, grade, dept, name, term, keys, present) %>%
+  mutate(college = factor(college), term = factor(term)) %>%
+  group_by(keys, term, present) %>%
+  count() %>%
+  ungroup %>%
+  group_by(keys, term) %>%
+  mutate(percent = round(n/sum(n), 2), total = sum(n)) %>%
+  filter(present == "present") %>%
+  ungroup %>%
+  ggplot(aes(keys, percent)) +
+  geom_col(width = 0.7, fill="lightblue", colour="black") +
+  #geom_line(aes(term, percent, group = college)) +
+  facet_wrap(~term, ncol = 5, scale="free_x") +
+  theme(strip.background = element_rect(fill="grey"))
+```
+
+#voteplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_lm %>%
+  ggplot(aes(void_rate, Attnd_Rate)) +
+  geom_point()
+```
+
+#voteplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_lm %>%
+  ggplot(aes(support_rate, Attnd_Rate)) +
+  geom_point()
+```
+#voteplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_lm %>%
+  ggplot(aes(vote_rate, Attnd_Rate)) +
+  geom_point()
+```
+
+#voteplot
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+
+```

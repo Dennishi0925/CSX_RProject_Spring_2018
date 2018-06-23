@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Data Modeling</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">NTUSC Attendance Rate Open Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    NTUSC
+  </a>
+</li>
+<li>
+  <a href="scope.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Scope
+  </a>
+</li>
+<li>
+  <a href="data_processing.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Processing
+  </a>
+</li>
+<li>
+  <a href="data_visualizing.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Visualizing
+  </a>
+</li>
+<li>
+  <a href="data_modeling.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Modeling
+  </a>
+</li>
+<li>
+  <a href="data_communicating.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Communicating
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Data Modeling</h1>
+
+</div>
+
+
+<div id="brief-introduction" class="section level3">
+<h3><strong>Brief Introduction</strong></h3>
+<p>NA</p>
+<pre><code>## 
+## Call:
+## lm(formula = Attnd_Rate ~ support_rate + nonobj_Rate * competitive + 
+##     vote_rate + competitive + void_rate + college_population_rate, 
+##     data = data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5391 -0.1774  0.0226  0.1731  0.4811 
+## 
+## Coefficients:
+##                          Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)               0.45232    0.12798   3.534 0.000521 ***
+## support_rate              0.09122    0.08677   1.051 0.294525    
+## nonobj_Rate               0.02045    0.14555   0.141 0.888394    
+## competitive1              0.07365    0.07871   0.936 0.350696    
+## vote_rate                 1.53062    0.52848   2.896 0.004250 ** 
+## void_rate                -0.93827    1.23398  -0.760 0.448047    
+## college_population_rate   0.16861    0.78665   0.214 0.830529    
+## nonobj_Rate:competitive1  0.18335    0.30234   0.606 0.544997    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2498 on 178 degrees of freedom
+## Multiple R-squared:  0.101,  Adjusted R-squared:  0.06564 
+## F-statistic: 2.857 on 7 and 178 DF,  p-value: 0.007545</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Attnd_Rate ~ support_rate + vote_rate, data = data_lm)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.55632 -0.17599  0.01243  0.17759  0.47762 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   0.48896    0.03178  15.385  &lt; 2e-16 ***
+## support_rate  0.08221    0.07297   1.127    0.261    
+## vote_rate     1.67105    0.40848   4.091 6.43e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2487 on 183 degrees of freedom
+## Multiple R-squared:  0.08425,    Adjusted R-squared:  0.07424 
+## F-statistic: 8.418 on 2 and 183 DF,  p-value: 0.0003181</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Attnd_Rate ~ vote_rate, data = data_lm)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.55290 -0.17892  0.01503  0.18793  0.46820 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.50021    0.03019  16.568  &lt; 2e-16 ***
+## vote_rate    1.57930    0.40057   3.943 0.000114 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2488 on 184 degrees of freedom
+## Multiple R-squared:  0.0779, Adjusted R-squared:  0.07289 
+## F-statistic: 15.54 on 1 and 184 DF,  p-value: 0.0001144</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

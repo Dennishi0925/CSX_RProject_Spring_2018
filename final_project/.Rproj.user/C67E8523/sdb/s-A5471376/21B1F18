@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "name: \"NTUSC\"\nnavbar:  \n  title: \"NTUSC Attendance Rate Open Data\"\n  left:  # you can also use 'right'\n    - text: \"NTUSC\"\n      icon: fa-home  # handy way to use FontAwesome icons in nav!\n      href: index.html  # don't link to the .Rmd file\n    - text: \"Scope\"\n      icon: fa-newspaper-o\n      href: scope.html\n    - text: \"Processing\"\n      icon: fa-newspaper-o\n      href: data_processing.html\n    - text: \"Visualizing\"\n      icon: fa-newspaper-o\n      href: data_visualizing.html\n    - text: \"Modeling\"\n      icon: fa-newspaper-o\n      href: data_modeling.html\n    - text: \"Communicating\"\n      icon: fa-newspaper-o\n      href: data_communicating.html\noutput:\n  html_document:\n    theme: united\n    highlight: textmate\n    css: style.css",
+    "created" : 1529740451291.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2053045474",
+    "id" : "21B1F18",
+    "lastKnownWriteTime" : 1529756254,
+    "last_content_update" : 1529756254433,
+    "path" : "D:/R_programming/DSprogramming/final_project/_site.yml",
+    "project_path" : "_site.yml",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "yaml"
+}

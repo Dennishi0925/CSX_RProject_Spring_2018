@@ -1,0 +1,32 @@
+---
+title: "Data Modeling"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Brief Introduction**
+
+資料主要有二份，一份是台大學代出席資料，另一份則是台大學代投票資料。前者可以從台大學代會的臉書搜尋而得，後則可以從台大選委會的臉書搜尋而得，但因為有些已經是歷史資料，所以我直接向粉絲專頁傳送訊息，兩方的小編都直接幫我將檔案找出了，非常感謝他們。
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+library(tidyverse)
+data_pornot <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datapor") %>% select(-c(X1, ID))
+data_lm <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datalm")
+mm <- model.matrix( ~ college - 1, data= data_lm )
+data <- cbind(data_lm, mm) %>% as_tibble()
+```
+
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+model <- lm(formula= Attnd_Rate ~ support_rate + nonobj_Rate*competitive + vote_rate + competitive + void_rate + college_population_rate,
+            data=data)
+summary(model)
+model3 <- lm(formula= Attnd_Rate ~ support_rate + vote_rate,
+             data=data_lm)
+summary(model3)
+model4 <- lm(formula= Attnd_Rate ~ vote_rate,
+             data=data_lm)
+summary(model4)
+```

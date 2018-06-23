@@ -1,0 +1,40 @@
+---
+title: "Scope of Data"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### **Brief Introduction**
+
+資料主要有二份，一份是台大學代出席資料，另一份則是台大學代投票資料。前者可以從台大學代會的臉書搜尋而得，後則可以從台大選委會的臉書搜尋而得，但因為有些已經是歷史資料，所以我直接向粉絲專頁傳送訊息，兩方的小編都直接幫我將檔案找出了，非常感謝他們。
+
+### **NTUSC Attendance Data**
+
+**Data description:** NTUSC attendance data of each session  
+**Data range:** 104-1 ~ 106-1  
+**Data size:** 3843 observations * 13 variables  
+**Data Overview:**  
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+data_pornot <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datapor") %>% select(-c(X1, ID))
+data_pornot %>% head() %>% knitr::kable() %>% kable_styling()
+```
+  
+### **NTUSC Vote Data**
+
+**Data description:** NTUSC vote data of each term  
+**Data range:** 104-1 ~ 106-1  
+**Data size:**  186 observations * 11 variables  
+**Data Overview:**  
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+data_lm <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datalm")
+data_lm %>% head() %>% knitr::kable() %>% kable_styling()
+```
+
+**Data description:** NTUSC attendance data of each session  
+**Data range:** 104-1 ~ 106-1  
+**Data size:** 3843 observations * 13 variables 
