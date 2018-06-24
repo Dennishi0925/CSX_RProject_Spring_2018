@@ -1,0 +1,140 @@
+---
+title: "KNN Practice"
+author: "Dennis Tseng, 2018/06/23"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(showtext)
+showtext_auto()
+font_add("jh", "msjh.ttc")
+```
+
+This project is my trial to follow KNN algotrithms chaptern in [*Machine Learning with R*](https://the-eye.eu/public/Books/Programming/Machine%20Learning%20with%20R%20-%20Second%20Edition%20%5BeBook%5D.pdf). The data is NTUSC vote rate and attedance rate data.
+
+```{r message = F, warning = F}
+library(tidyverse)
+wbcd <- read_rds("D:/R_programming/Journalism_homework/NTUSC/datalm")
+wbcd <- as_tibble(wbcd)
+wbcd$Attnd <- ifelse(wbcd$Attnd_Rate >= 0.6, "H", "L")
+# table of Attendance Rate
+table(wbcd$Attnd)
+# recode Attendance Rate as a factor
+wbcd$Attnd <- factor(wbcd$Attnd, levels = c("H", "L"),
+                         labels = c("High", "Low"))
+# table or proportions with more informative labels
+round(prop.table(table(wbcd$Attnd)) * 100, digits = 1)
+```
+
+"H" means that student representatives has a high attendance rate, "L" vice versa. There are 186 observations total.
+
+```{r message = F, warning = F}
+# summarize three numeric features
+summary(wbcd[c("support_rate", "vote_rate", "nonobj_Rate")])
+```
+
+Let's take a look at these three numeric features I am going to use. 
+
+```{r message = F, warning = F}
+# create normalization function
+normalize <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+# normalize the wbcd data
+wbcd_n <- wbcd %>%
+  select(4:12) %>%
+  mutate(support_rate = normalize(support_rate),
+         nonobj_Rate = normalize(nonobj_Rate),
+         vote_rate = normalize(vote_rate),
+         college_population_rate = normalize(college_population_rate)) %>%
+  select(term, support_rate, nonobj_Rate, vote_rate, college_population_rate, Attnd)
+# confirm that normalization worked
+summary(wbcd_n$support_rate)
+```
+
+After normalizing, it's time to continue to seperate data into train and test datasets.
+
+```{r message = F, warning = F}
+# create training and test data
+wbcd_train <- wbcd_n %>% filter(term != "106-1")
+wbcd_test <- wbcd_n %>% filter(term == "106-1")
+
+# create labels for training and test data
+wbcd_train_labels <- wbcd_train$Attnd
+wbcd_test_labels <- wbcd_test$Attnd
+
+wbcd_train_labels <- as_vector(wbcd_train_labels)
+wbcd_test_labels <- as_vector(wbcd_test_labels)
+
+# preserve needed column only
+wbcd_train <- wbcd_train %>% select(2:4)
+wbcd_test <- wbcd_test %>% select(2:4)
+```
+
+Seperation completed. The next step is traing a model on the data using `class` package, then evaluating model performace using `gmodels` package.
+
+```{r message = F, warning = F}
+# load the "class" library
+library(class)
+wbcd_test_pred <- knn(train = wbcd_train, test = wbcd_test,
+                      cl = wbcd_train_labels, k = 21)
+# load the "gmodels" library
+library(gmodels)
+prop.table(table(wbcd_test_labels, wbcd_test_pred))
+# Create the cross tabulation of predicted vs. actual
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred,
+           prop.chisq = FALSE)
+```
+
+It is quite clear that the model performs quite bad... but no need to worry. There is still way to improve model performance.
+
+```{r message = F, warning = F}
+# use the scale() function to z-score standardize a data frame
+wbcd_z <- wbcd %>%
+  select(support_rate, nonobj_Rate, vote_rate, Attnd, term)
+wbcd_z_scale <- as.data.frame(scale(wbcd_z[-(4:5)]))
+# confirm that the transformation was applied correctly
+summary(wbcd_z_scale$support_rate)
+
+# create training and test datasets
+wbcd_z_train <- wbcd_z %>% filter(term != "106-1")
+wbcd_z_train <- scale(wbcd_z_train[-(4:5)])
+wbcd_z_test <- wbcd_z %>% filter(term == "106-1")
+wbcd_z_test <- scale(wbcd_z_test[-(4:5)])
+# re-classify test cases
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test,
+                      cl = wbcd_train_labels, k = 21)
+
+# Create the cross tabulation of predicted vs. actual
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z,
+           prop.chisq = FALSE)
+```
+
+As you can see, this time I use **z-score** instead of **normalization** to standardize the dataset. It looks like it works. The next step is to try several different values of k.
+
+```{r message = F, warning = F}
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=1)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=5)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=11)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=15)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=17)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+wbcd_test_pred_z <- knn(train = wbcd_z_train, test = wbcd_z_test, cl = wbcd_train_labels, k=21)
+CrossTable(x = wbcd_test_labels, y = wbcd_test_pred_z, prop.chisq=FALSE)
+
+```
+
+To conclude, I applied the concepts learned and tried many useful packages such as `dplyr`, `class`, `gmodels` in this porject. The script is mainly referred from *Machine Learning with R* and I use it on my own data. It's worth trying other data next time. Hope you enjoy it!

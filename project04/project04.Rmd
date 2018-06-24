@@ -1,0 +1,110 @@
+---
+title: "Association Rules Practice"
+author: "Dennis Tseng, 2018/06/23"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(showtext)
+showtext_auto()
+font_add("jh", "msjh.ttc")
+```
+
+### Conclusion
+
+This project is my trial to apply association rules to the real-world data. There are many precious tutorials and one of them not only talk about abstract concepts but also practical application of `arules` package in R. [The article](https://cran.r-project.org/web/packages/arules/vignettes/arules.pdf) is on CRAN. Besides, I use data from [here](https://github.com/nupur1492/RProjects/blob/master/MarketBasketAnalysis/groceries.csv). The data is bundled with a tutorial, though there are many mistakes in that article. Thus, I give up and try to understand and practice association rulses on my own. Hope it works!
+
+```{r message = F, warning = F}
+library(tidyverse)
+library(arules)
+library(arulesViz)
+library(knitr)
+library(kableExtra)
+rm(list=ls())
+df <- read_csv("D:/R_programming/DSprogramming/groceries.csv",
+               col_types = cols(
+                 Member_number = col_character(),
+                 Date = col_date("%m/%d/%Y"),
+                 itemDescription = col_character()))
+names(df) <- c("member_ID", "date", "item")
+```
+
+Let's take a look at the data!
+
+```{r message = F, warning = F}
+glimpse(df)
+```
+
+There are three columns of this grocery data, which are member_ID, date, and items bought. Each observation contains an item only, so if a customer buy 5 items in the same time, it will account for 5 observations. Now I am goint to use `group_by` to check the real number of transaction.
+
+```{r message = F, warning = F}
+df %>% group_by(member_ID, date) %>%
+  count(sort = T)
+```
+
+`arules` needs a primary key, but primary key in `df` is composite key. I convert it below. `group_id` is the new single primary key of `df2`. We can take a look at ```glimpse(df2)``` and ```df2 %>% group_by(group_id) %>% count(sort = T) %>% glimpse()```
+
+```{r message = F, warning = F}
+df2 <- df %>%
+  unite(gawy, c(member_ID, date), sep = "-")
+df2$group_id <- df2 %>% group_indices(gawy)
+df2$gawy <- NULL
+df2 <- df2 %>% select(group_id, item) %>% arrange(group_id)
+glimpse(df2)
+df2 %>% group_by(group_id) %>% count(sort = T) %>% glimpse()
+```
+
+After completing the transformation of df2, it is needed to use function in `arules` to continue.
+
+```{r message = F, warning = F}
+#write.csv(df2, "df2.csv") I have wrriten it.
+order_trans <- read.transactions(
+  file = "df2.csv",
+  format = "single",
+  sep = ",",
+  cols=c("group_id","item"),
+  rm.duplicates = T
+)
+length(order_trans)
+dim(order_trans)
+size(order_trans)
+image(order_trans)
+summary(order_trans)
+```
+
+`order_trans` is a specific data type in `arules` package. It is a sparse matrix consists of transactions as row and items as columns. If items appear in a transcation, the value will be 1, and 0 vice versa. ```size(order_trans)``` indicates items bought in each transcation. ```image(order_trans)``` gives us a broader look to the big picture. It is useful to check the condition such as whether some items are out of shelter.
+
+```{r message = F, warning = F}
+itemFrequencyPlot(order_trans, topN=10,type="absolute")
+```
+
+We can take a look at the frequency plot. It is clear that whole milk is a hot item. So are rolls/buns.
+
+```{r message = F, warning = F}
+basket_rules <- apriori(order_trans, parameter = list(sup = 0.01, conf = 0.5,target="rules"))
+rules <- sort(basket_rules, decreasing = TRUE, by = "confidence")
+```
+
+`apriori` is one of algorithm of association rules. Using `apriori` function, `order_trans` are transformed into `rules`, another specific data type related to association rules. Let's take a look at it.
+
+```{r message = F, warning = F}
+inspect(rules)
+summary(rules)
+```
+
+`rules` tell about the basic concept underling association rules. We can also check that in the plot form.
+
+```{r rules = F, warning = F}
+plot(basket_rules)
+plot(rules, method = "grouped", control = list(k = 5))
+plot(rules, method = "graph", control = list(type = "items"))
+plot(rules, method = "paracoord",  control = list(alpha = .5, reorder = TRUE))
+```
+
+To conclude, I applied the concepts learned and tried many useful packages such as `dplyr`, `arules` in this porject. I spent much time in understanding association rules and application in real life. I wish I could hand the real world data next time!
+
+
