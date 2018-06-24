@@ -92,9 +92,9 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 > * finished [`final proposal`](https://drive.google.com/open?id=1wLcZlZeyISDsWmdkr50tT1z5UmRNJx2h)
  for NTUSC data
  
- ### week15
+### week15
 > * finished [`final presentation`](https://drive.google.com/open?id=1FJdYLb8Z0pno8GqUE3e79dVPILzaJ0q-)
  for NTUSC data
 
- ### week16
+### week16
 > * finished [`Final Project`](https://dennishi0925.github.io/CSX_2018_final/index.html) and [`Final Project Shiny APP`](https://dennistseng.shinyapps.io/NTUSCapp/)
