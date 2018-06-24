@@ -97,5 +97,4 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
  for NTUSC data
 
  ### week16
-> * finished **Chapter** of *R for Data Science*
 > * finished [`Final Project`](https://dennishi0925.github.io/CSX_2018_final/index.html) and [`Final Project Shiny APP`](https://dennistseng.shinyapps.io/NTUSCapp/)
