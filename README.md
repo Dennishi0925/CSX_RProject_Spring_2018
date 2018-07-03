@@ -102,4 +102,5 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week17
 > * 0621-0627
-> * finished [`Final Project Website`](https://dennishi0925.github.io/CSX_2018_final/index.html) and [`Final Project Shiny APP`](https://dennistseng.shinyapps.io/NTUSCapp/)
+> * finished **Chapter6** of *R Graphics Cookbook*
+> * finished **Chapter14** of *R for Data Science*
