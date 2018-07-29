@@ -5,7 +5,11 @@
 > * School: National Taiwan University
 > * Goal: Using R to solve daily problems
 
-# Preface
+> "I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him."
+>
+> --- Mark Twain
 
 ### R-related experience
 > * self-studied 12+ courses on [Datacamp](https://www.datacamp.com)
