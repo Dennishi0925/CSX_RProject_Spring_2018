@@ -5,6 +5,8 @@
 > * School: National Taiwan University
 > * Goal: Using R to solve daily problems
 
+# Preface {-}
+
 ### R-related experience
 > * self-studied 12+ courses on [Datacamp](https://www.datacamp.com)
 > * finished first 7 chapters of [The art of R programming](http://diytranscriptomics.com/Reading/files/The%20Art%20of%20R%20Programming.pdf)
