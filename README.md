@@ -3,7 +3,7 @@
 > * Name: Dennis Tseng
 > * Major: Business Administration
 > * School: National Taiwan University
-> * Goal: Using R to solve daily problems
+> * Goal: Using R to solve daily problems^[This is a footnote.]
 
 ### R-related experience
 > * self-studied 12+ courses on [Datacamp](https://www.datacamp.com)
