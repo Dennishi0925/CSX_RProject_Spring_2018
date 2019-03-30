@@ -4,7 +4,7 @@
 > * Major: Business Administration
 > * School: National Taiwan University
 > * Goal: Using R to solve daily problems
-
+ 
 > "I thoroughly disapprove of duels. If a man should challenge me,
   I would take him kindly and forgivingly by the hand and lead him
   to a quiet place and kill him."
@@ -55,7 +55,7 @@ https://dennishi0925.github.io/CSX_RProject_Spring_2018/project1/project01.html)
 
 ### week6
 > * finished **Chapter5** & **Chapter6**  of *Text Mining with R*
-> * finished **Chapter1** & **Chapter2** & **Chapter3** of [*Machine Learning with R*](https://the-eye.eu/public/Books/Programming/Machine%20Learning%20with%20R%20-%20Second%20Edition%20%5BeBook%5D.pdf)
+> * finished **Chapter1** & **Chapter2** & **Chapter3** of [*Machine Learning with R*](https://edu.kpfu.ru/pluginfile.php/278552/mod_resource/content/1/MachineLearningR__Brett_Lantz.pdf)
 > * recommended a sites for data visualization in data journalism using ggplot2 by a reporter from *Finantial Times*: [ggplot2 as a Creativity Engine](http://johnburnmurdoch.github.io/slides/r-ggplot/#/)
 > * finished [`HW5`](https://dennishi0925.github.io/CSX_RProject_Spring_2018/week5/HW5.html) aiming to practice tf-idf concept in R
 
